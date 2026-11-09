@@ -29,6 +29,7 @@ for f in root.rglob('*.html'):
    route=route[len(base):]
   target=root/route.lstrip('/')
   if not target.is_file() and not (target/'index.html').is_file():errors.append(f'{f}: broken target {url}')
-model=root/'assets/user-tooth.bin';data=model.read_bytes();nv,ni=struct.unpack('<II',data[:8]);assert len(data)==8+nv*12+ni*4
+for name in ['user-tooth.bin','licensed-tooth.bin']:
+ data=(root/'assets'/name).read_bytes();nv,ni=struct.unpack('<II',data[:8]);assert len(data)==8+nv*12+ni*4
 if errors:raise SystemExit('\n'.join(errors))
-print(f'PASS: {count} pages, all internal links and media resolve; languages, noindex and user 3D binary checked.')
+print(f'PASS: {count} pages, all internal links and media resolve; languages, noindex and both 3D binaries checked.')
