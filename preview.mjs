@@ -19,4 +19,4 @@ export async function handler(req,res){
   else{res.writeHead(200,{...headers,'Content-Length':data.length});res.end(data);}
  }catch{res.writeHead(404);res.end('Not found');}
 }
-if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))http.createServer(handler).listen(4173,()=>console.log('http://localhost:4173/dental-spa/ru/'));
+if(typeof process!=='undefined'&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))http.createServer(handler).listen(4173,()=>console.log('http://localhost:4173/dental-spa/ru/'));
