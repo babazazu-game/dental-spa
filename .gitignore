@@ -1,0 +1,11 @@
+*.blend
+*.blend1
+source-home.html
+reference-models/
+__pycache__/
+.sites-local/
+*.tar.gz
+.openai/
+model.py
+render-model.py
+!source-model/Tooth.blend

@@ -1,0 +1,11 @@
+const menu=document.querySelector('#menu');
+document.querySelector('#menu-toggle')?.addEventListener('click',e=>{const open=e.currentTarget.getAttribute('aria-expanded')!=='true';e.currentTarget.setAttribute('aria-expanded',String(open));menu.hidden=!open;});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){menu.hidden=true;document.querySelector('#menu-toggle')?.setAttribute('aria-expanded','false');document.querySelector('dialog[open]')?.close();}});
+document.querySelectorAll('[data-consult]').forEach(b=>b.addEventListener('click',()=>document.querySelector('#consult').showModal()));
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));
+document.querySelector('#consult')?.addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close();});
+const search=document.querySelector('#price-search');
+search?.addEventListener('input',()=>{const q=search.value.trim().toLocaleLowerCase();let n=0;document.querySelectorAll('[data-price-row]').forEach(r=>{r.hidden=!r.textContent.toLocaleLowerCase().includes(q);if(!r.hidden)n++;});document.querySelector('#price-empty').hidden=n>0;});
+const video=document.querySelector('#clinic-video');
+document.querySelector('[data-video]')?.addEventListener('click',async e=>{if(!video.src)video.src=video.dataset.src;video.controls=true;try{await video.play();e.currentTarget.hidden=true;}catch{video.controls=true;}});
+if(document.querySelector('#scene'))import('./scene.js').catch(()=>{});
